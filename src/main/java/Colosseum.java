@@ -103,6 +103,58 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Pokemon returnPokemon = null;
+        myScan = new Scanner(System.in);
+        System.out.println("Select from the following types: \n1 - Electric Pokemon\n2 - Fire Pokemon\n3 - Water Pokemon\n");
+        myScan = new Scanner(System.in);
+        int pokemonType = myScan.nextInt();
+        while (pokemonType > 3 || pokemonType < 1) {
+            System.out.println("Sorry. You must pick either 1, 2, or 3.");
+            System.out.println("Select from the following types: \n1 - Electric Pokemon\n2 - Fire Pokemon\n3 - Water Pokemon\n");
+            myScan = new Scanner(System.in);
+            pokemonType = myScan.nextInt();
+        }
+
+        System.out.println("Please name your Pokemon: ");
+        myScan = new Scanner(System.in);
+        String pokemonName = myScan.next();
+
+        System.out.println("How many hit points will it have? (1-50): ");
+        myScan = new Scanner(System.in);
+        int hitPoints = myScan.nextInt();
+        while (hitPoints > 50 || hitPoints < 1) {
+            System.out.println("Sorry. Hit points must be between 1 and 50: ");
+            myScan = new Scanner(System.in);
+            hitPoints = myScan.nextInt();
+        }
+
+        System.out.println("Enter your attack level: ");
+        myScan = new Scanner(System.in);
+        int attackPoints = myScan.nextInt();
+        while (attackPoints > 49 || attackPoints < 1) {
+            System.out.println("Sorry. The attack level must be between 1 and 49: ");
+            myScan = new Scanner(System.in);
+            attackPoints = myScan.nextInt();
+        }
+
+        System.out.println("Enter your defense level: ");
+        myScan = new Scanner(System.in);
+        int defensePoints = myScan.nextInt();
+        while (defensePoints > 23 || defensePoints < 1) {
+            System.out.println("Sorry. The defense level must be between 1 and 23: ");
+            myScan = new Scanner(System.in);
+            defensePoints = myScan.nextInt();
+        }
+
+        if (pokemonType == 1) {
+
+            returnPokemon = new ElectricPokemon(pokemonName, hitPoints, attackPoints, defensePoints);
+
+        } else if (pokemonType == 2) {
+            returnPokemon = new FirePokemon(pokemonName, hitPoints, attackPoints, defensePoints);
+        } else {
+            returnPokemon = new WaterPokemon(pokemonName, hitPoints, attackPoints, defensePoints);
+        }
+
         return returnPokemon;
     }
 

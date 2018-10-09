@@ -20,7 +20,8 @@ public class FirePokemon extends Pokemon {
      * Constructs a new FirePokemon with the Pokemon Type of fire.
      * FirePokemon's specialty attack is FLAME THROWER
      */
-    public FirePokemon() {
+    public FirePokemon(String setName, int setHit, int setAttack, int setDefense) {
+        super(setName, setHit, setAttack, setDefense);
         pokeType = PokemonType.FIRE;
         specialtyAttack = "FLAME THROWER";
         specialtyProbability = specProb;
@@ -58,7 +59,16 @@ public class FirePokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
-        return false;
+        super.attack(opponent);
+        if (opponent.getHitPoints() > 0
+                && opponent.pokeType != PokemonType.FIRE
+                && specProb > Math.random()) {
+            System.out.println(specialtyAttack + " was used.");
+            opponent.setHitPoints(0);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

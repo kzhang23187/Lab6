@@ -20,7 +20,8 @@ public class ElectricPokemon extends Pokemon {
      * Constructs a new ElectricPokemon with the Pokemon Type of electric.
      * ElectricPokemon's specialty attack is THUNDERBOLT
      */
-    public ElectricPokemon() {
+    public ElectricPokemon(String setName, int setHit, int setAttack, int setDefense) {
+        super(setName, setHit, setAttack, setDefense);
         pokeType = PokemonType.ELECTRIC;
         specialtyAttack = "THUNDERBOLT";
         specialtyProbability = specProb;
@@ -59,7 +60,16 @@ public class ElectricPokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
-        return false;
+        super.attack(opponent);
+        if (opponent.getHitPoints() > 0
+            && opponent.pokeType != PokemonType.ELECTRIC
+            && specProb > Math.random()) {
+            System.out.println(specialtyAttack + " was used.");
+            opponent.setHitPoints(0);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
